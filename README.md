@@ -1,24 +1,22 @@
-# real-world-vue-3
 
-## Project setup
-```
-npm install
-```
+# Note
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Vue Router Essentials
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Server-side Routing
 
-### Lints and fixes files
-```
-npm run lint
-```
+We call this “Server-Side Routing” because the client is making a request to the server on every URL change.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Client-side Routing
+
+In many cases, the view of our app that we need to show has already been loaded into the browser, so we don’t need to reach out to the server for it. Vue Router simply updates what part of the app that is currently being displayed.
+
+In fact, with routing like this, our app is functioning as a Single Page Application.
+
+### Single Page Applications
+
+A Single Page Application (SPA) is a web app that loads from a single page and dynamically updates that page as the user interacts with the app.
+
+In our case, everything is being loaded from the index.html file of our project. 
+
+In other words, the index.html file is the “single page” of our single page application, where all of the application code is mounted. So Vue Router enables client-side routing so we can navigate around and display different “views” of our app.
