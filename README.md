@@ -27,3 +27,13 @@ Fetch external data w/ API Call, We'll need:
 
 - A mock database to pull data from: <https://my-json-server.typicode.com/>
 - A tool for making API calls: Axios
+
+Why Axios
+
+- GET,POST,PUT, and DELETE requests
+- Add authentication to each request
+- Set timeouts if requests take too long
+- Configure defaults for every request
+- Intercept requests to create middleware
+- Handle errors and cancel requests properly
+- Properly serialize and deserialize requests & responses
