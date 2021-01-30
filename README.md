@@ -37,3 +37,14 @@ Why Axios
 - Intercept requests to create middleware
 - Handle errors and cancel requests properly
 - Properly serialize and deserialize requests & responses
+
+Reorganizing our code into a service layer
+
+While we’ve made great progress, there’s a problem with our code. Currently, we’re importing Axios into the EventList.vue component. But in the next lesson, we’re going to create a new component, which displays our event’s details. That new component will also need to make an API call. If we’re importing Axios into each component that needs it, we’re unnecessarily creating a new instance of Axios each time we do that. With API code woven throughout our application, this gets messy and makes our app harder to debug.
+
+The Problem with our code
+
+- Each component creates a new Axios instance
+- Our API code is all over our application
+
+Solution: Modularizing using a Service
