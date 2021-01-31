@@ -21,9 +21,6 @@ export default {
   },
   created() {
     EventService.getEvents()
-      .get(
-        'https://my-json-server.typicode.com/Code-Pop/Real-World_Vue-3/events'
-      )
       .then(response => {
         this.events = response.data
       })
