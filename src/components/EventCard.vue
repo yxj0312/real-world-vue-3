@@ -11,11 +11,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+// eslint-disable-next-line no-unused-vars
+import { defineComponent, PropType } from 'vue'
+// eslint-disable-next-line no-unused-vars
+import { EventItem } from '../types'
 export default defineComponent({
   props: {
     event: {
-      type: Object,
+      type: Object as PropType<EventItem>,
       required: true
     }
   }
