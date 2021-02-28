@@ -58,3 +58,52 @@ The composition API Syntax is Additive. It's a second way to write components
 1. TypeScript support
 2. Component is too large and needs to be organized by feature
 3. Need to reuse code across other components
+
+### The Composition API Setup Method
+
+The setup method executes before:
+
+- Components
+- Props
+- Data
+- Methods
+- Computed Properties
+- Lifecycle methods
+
+Doesn't have access to "this"
+
+The setup have two optional arguments:
+
+- Props: it is reactive and can be watched
+
+```JavaScript
+import { watch } from "vue";
+
+export default {
+    props: {
+        name: String
+    },
+
+    setup(props) {
+        watch(() => {
+            console.log(props.name)
+        })
+    }
+}
+
+```
+
+- Context: we use context to access properties, that we previously accessed with this.
+
+```JavaScript
+export default {
+    setup(props, context) {
+        context.attrs;
+        context.slots;
+        context.parent;
+        context.root;
+        context.emit;
+    }
+}
+
+```
