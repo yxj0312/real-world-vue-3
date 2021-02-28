@@ -107,3 +107,36 @@ export default {
 }
 
 ```
+
+### ref
+
+```JavaScript
+<template>
+    <div>Capacity: {{ capacity }} </div>
+</template>
+
+<script>
+import {ref} from "vue"
+export default {
+    setup() {
+        const capacity = ref(3);
+        return { capacity}
+    }
+}
+</script>
+```
+
+ref create a reactive reference.
+
+This wraps our primitive in an object,
+allowing us to track changes.
+
+previously data() was wrapping our primitives in an object
+
+Note: With the composition API we can declare reactive objects that aren't associated with a component
+
+Returns the variables and functions that our template will need. This is more verbose, but it also makes our component more maintainable.
+
+- We can control what gets exposed.
+
+- We can trace where a property is defined
