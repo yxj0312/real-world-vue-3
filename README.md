@@ -48,3 +48,13 @@ The Problem with our code
 - Our API code is all over our application
 
 Solution: Modularizing using a Service
+
+## Vue 3 Composition API
+
+The composition API Syntax is Additive. It's a second way to write components
+
+### When to use the Composition API
+
+1. TypeScript support
+2. Component is too large and needs to be organized by feature
+3. Need to reuse code across other components
