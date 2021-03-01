@@ -165,7 +165,7 @@ export default {
             // How we access value on a reactive reference
             capacity.value++
         }
-        return { capacity}
+        return { capacity, increaseCapacity}
     }
 }
 </script>
