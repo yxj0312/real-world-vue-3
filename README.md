@@ -140,3 +140,37 @@ Returns the variables and functions that our template will need. This is more ve
 - We can control what gets exposed.
 
 - We can trace where a property is defined
+
+### How do we add a method?
+
+We can't write capacity++ inside the function, because we can't increment an object.
+
+This is a reactive reference, and not a primitive.
+
+if we inspected capacity in the console in the console, that's a reference with a getter and a setter, and it also has this value.
+
+```JavaScript
+<template>
+    <div>Capacity: {{ capacity }} </div>
+    <button @click="increaseCapacity()">Increase Capacity</button>
+</template>
+
+<script>
+import {ref} from "vue"
+export default {
+    setup() {
+        const capacity = ref(3);
+
+        function increaseCapacity() {
+            // How we access value on a reactive reference
+            capacity.value++
+        }
+        return { capacity}
+    }
+}
+</script>
+```
+
+Why don't we need to call .value in the template?
+
+When Vue finds a ref in the template it automatically exposes the inner value. So you should never need to call .value inside the template
