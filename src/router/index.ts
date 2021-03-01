@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import EventList from '../views/EventList.vue'
 import EventDetails from '../views/EventDetails.vue'
 import About from '../views/About.vue'
+import Capacity from '../views/Capacity.vue'
 
 const routes = [
   {
@@ -19,6 +20,11 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About
+  },
+  {
+    path: '/composition-api',
+    name: 'Capacity',
+    component: Capacity
   }
 ]
 
