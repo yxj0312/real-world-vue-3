@@ -174,3 +174,37 @@ export default {
 Why don't we need to call .value in the template?
 
 When Vue finds a ref in the template it automatically exposes the inner value. So you should never need to call .value inside the template
+
+### Computed Properties
+
+```JavaScript
+<template>
+    <p>Space Left: {{ spacesLeft }} out of {{ capacity }}</p>
+    <div>Capacity: {{ capacity }} </div>
+    <button @click="increaseCapacity()">Increase Capacity</button>
+</template>
+
+<script>
+import {ref , computed } from "vue"
+export default {
+    setup() {
+        const capacity = ref(3);
+        const attending = ref(['Tim', 'Bob', 'Joe'])
+
+        const spacesLeft = computed(() => {
+            return capacity.value -attending.value.length
+        })
+
+        function increaseCapacity() {
+            // How we access value on a reactive reference
+            capacity.value++
+        }
+        return { capacity, increaseCapacity}
+    }
+}
+</script>
+```
+
+We create a new constant called spacesLeft, which sends into the computer function an anonymous function, which returns the result of taking capacity, and subtracting the number of people who are attending
+
+Notice I have to use .value here since I'm dealing with two reactive references.

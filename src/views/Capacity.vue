@@ -1,4 +1,5 @@
 <template>
+  <p>Space Left: {{ spacesLeft }} out of {{ capacity }}</p>
   <div>Capacity: {{ capacity }}</div>
   <button @click="increaseCapacity()">Increase Capacity</button>
   <h2>Attending</h2>
@@ -10,11 +11,16 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 export default {
   setup() {
     const capacity = ref(3)
     const attending = ref(['Tim', 'Bob', 'Joe'])
+
+    // eslint-disable-next-line no-unused-vars
+    const spacesLeft = computed(() => {
+      return capacity.value - attending.value.length
+    })
 
     function increaseCapacity() {
       // How we access value on a reactive reference
