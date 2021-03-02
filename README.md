@@ -208,3 +208,5 @@ export default {
 We create a new constant called spacesLeft, which sends into the computer function an anonymous function, which returns the result of taking capacity, and subtracting the number of people who are attending
 
 Notice I have to use .value here since I'm dealing with two reactive references.
+
+### Alternative Reactive Syntax
