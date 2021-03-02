@@ -1,9 +1,12 @@
 <template>
+  <!-- <p>Space Left: {{ event.spacesLeft }} out of {{ event.capacity }}</p>
+  <div>Capacity: {{ event.capacity }}</div> -->
   <p>Space Left: {{ spacesLeft }} out of {{ capacity }}</p>
   <div>Capacity: {{ capacity }}</div>
   <button @click="increaseCapacity()">Increase Capacity</button>
   <h2>Attending</h2>
   <ul>
+    <!-- <li v-for="(name, index) in event.attending" :key="index"> -->
     <li v-for="(name, index) in attending" :key="index">
       {{ name }}
     </li>
@@ -11,7 +14,7 @@
 </template>
 
 <script>
-import { reactive, computed } from 'vue'
+import { reactive, computed, toRefs } from 'vue'
 export default {
   setup() {
     const event = reactive({
@@ -27,7 +30,8 @@ export default {
       // How we access value on a reactive reference
       event.capacity++
     }
-    return { event, increaseCapacity }
+    // return { event, increaseCapacity }
+    return { ...toRefs(event), increaseCapacity }
   }
 }
 </script>
