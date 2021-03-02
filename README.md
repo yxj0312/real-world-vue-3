@@ -292,3 +292,5 @@ export default {
 Converts a reactive object to a plain object, where each property is a Reactive Reference pointing to the property on the original object.
 
 if there's no function, we can simply ```return toRefs(event);```
+
+### Modularizing
