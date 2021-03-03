@@ -294,3 +294,7 @@ Converts a reactive object to a plain object, where each property is a Reactive 
 if there's no function, we can simply ```return toRefs(event);```
 
 ### Modularizing
+
+It's not clear, which objects are being injected by which composition function.
+
+To solve this, we can create local objects for the data that our composition functions are sending in, and use those in the return objects

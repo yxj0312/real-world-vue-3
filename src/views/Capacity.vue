@@ -12,9 +12,19 @@
 
 <script>
 import useEventSpace from '@/use/event-space'
+import useMapping from '@/use/mapping'
 export default {
   setup() {
-    return useEventSpace()
+    const {
+      capacity,
+      attending,
+      spacesLeft,
+      increaseCapacity
+    } = useEventSpace()
+    const { map, embedId } = useMapping()
+
+    return { capacity, attending, spacesLeft, increaseCapacity, map, embedId }
+    // return { ...useEventSpace(), ...useMapping() }
   }
 }
 
