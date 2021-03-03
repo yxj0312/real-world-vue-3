@@ -298,3 +298,14 @@ if there's no function, we can simply ```return toRefs(event);```
 It's not clear, which objects are being injected by which composition function.
 
 To solve this, we can create local objects for the data that our composition functions are sending in, and use those in the return objects
+
+### LifeCycle
+
+beforeCreate(): Called immediately after instance is initialized, before options are processed
+created(): Called after the instance has been created
+beforeMount(): Called right before mounting of the DOM begins
+mounted(): Called when the instance has been mounted(browser updated)
+beforeUpdate(): Called when reactive data has changed, before the DOM has been re-rendered
+updated(): Called when reactive data has changed, and the DOM has been re-rendered.
+beforeDestroy(): Called right before the Vue instance is destroyed.
+destroyed(): Called after the Vue instance has been destroyed.
