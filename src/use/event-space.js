@@ -13,5 +13,5 @@ export default function useEventSpace() {
     // How we access value on a reactive reference
     capacity.value++
   }
-  return { capacity, increaseCapacity, attending }
+  return { capacity, attending, spacesLeft, increaseCapacity }
 }
