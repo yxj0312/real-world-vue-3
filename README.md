@@ -309,3 +309,9 @@ beforeUpdate(): Called when reactive data has changed, before the DOM has been r
 updated(): Called when reactive data has changed, and the DOM has been re-rendered.
 beforeDestroy(): Called right before the Vue instance is destroyed.
 destroyed(): Called after the Vue instance has been destroyed.
+
+#### Newer Vue 2 LifeCycle Methods
+
+activated() Used for <keep-alive>, when a component inside<keep-alive> is toggled on.
+deactivated() Used for <keep-alive>, when a component inside<keep-alive> is toggled off.
+errorCaptured() Called when an error from any descendent component is captured.
