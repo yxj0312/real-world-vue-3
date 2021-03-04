@@ -414,7 +414,7 @@ As you can see, it doesn’t seem to be working. This is because our API calling
 
 #### Solution: **watchEffect**
 
-To fix this we need to use watchEffect. 
+To fix this we need to use watchEffect.
 
 This will run our function on the next tick while reactively tracking its dependencies, and re-run it whenever the dependencies have changed. Like so:
 
@@ -429,4 +429,24 @@ setup() {
 
   return { searchInput, results };
 }
+```
+
+So the first time this gets run it uses reactivity to start tracking searchInput, and when it gets updated it will re-run our API call which will update results. Since results is used in our template our template will be re-rendered.
+
+#### Watch syntax is for being specific
+
+If I want to be more specific as to which source I want to watch for changes, I can use watch instead of watchEffect, like so:
+
+```JavaScript
+watch(searchInput, () => {
+  ...
+});
+```
+
+Also, if I need access to the new value and old value of the item being watched I can write:
+
+```JavaScript
+watch(searchInput, (newVal, oldVal) => {
+  ...
+});
 ```
