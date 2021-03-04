@@ -324,3 +324,58 @@ destroyed()->unmounted()
 #### When using Composition API
 
 we can create callback hooks inside setup() by adding "on" to the callback name
+
+```javaScript
+import {
+  onBeforeMount,
+  onMounted,
+  onBeforeUpdate,
+  onUpdated,
+  onBeforeUnmount,
+  onUnmounted,
+  onActivated,
+  onDeactivated,
+  onErrorCaptured
+} from "vue";
+
+export default {
+  setup() {
+    onBeforeMount(() => {
+      console.log("Before Mount!");
+    });
+    onMounted(() => {
+      console.log("Mounted!");
+    });
+    onBeforeUpdate(() => {
+      console.log("Before Update!");
+    });
+    onUpdated(() => {
+      console.log("Updated!");
+    });
+    onBeforeUnmount(() => {
+      console.log("Before Unmount!");
+    });
+    onUnmounted(() => {
+      console.log("Unmounted!");
+    });
+    onActivated(() => {
+      console.log("Activated!");
+    });
+    onDeactivated(() => {
+      console.log("Deactivated!");
+    });
+    onErrorCaptured(() => {
+      console.log("Error Captured!");
+    });
+  }
+};
+```
+
+You might notice that two hooks are missing. beforeCreate and created are not needed when using the Composition API. This is because beforeCreate() is called right before setup() and created() is called right after setup(). Thus, we simply put code inside setup() that would normally be in these hooks, such as API calls.
+
+#### Two New Vue 3 LifeCycle Methods
+
+There are two more additional watchers coming in Vue 3. These have not been implemented with the Vue 2 Composition API plugin (as I’m writing this), so you can’t play with them without using Vue 3 source.
+
+onRenderTracked - called when a reactive dependency is first being accessed in the render function, during render. This dependency will now be tracked. This is helpful to see which dependencies are being tracked, for debugging.
+onRenderTriggered - Called when a new render is triggered, allowing you to inspect what dependency triggered a component to re-re
