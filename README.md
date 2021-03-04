@@ -379,3 +379,35 @@ There are two more additional watchers coming in Vue 3. These have not been impl
 
 onRenderTracked - called when a reactive dependency is first being accessed in the render function, during render. This dependency will now be tracked. This is helpful to see which dependencies are being tracked, for debugging.
 onRenderTriggered - Called when a new render is triggered, allowing you to inspect what dependency triggered a component to re-re
+
+### Watch
+
+Let’s look at another simple example using our composition API. Here’s some code that has a simple search input box, uses the search text to call an API, and returns the number of events that match the input results.
+
+```JavaScript
+<template>
+  <div>
+    Search for <input v-model="searchInput" /> 
+    <div>
+      <p>Number of events: {{ results }}</p>
+    </div>
+  </div>
+</template>
+<script>
+import { ref } from "@vue/composition-api";
+import eventApi from "@/api/event.js";
+
+export default {
+  setup() {
+    const searchInput = ref("");
+    const results = ref(0);
+    
+    results.value = eventApi.getEventCount(searchInput.value);
+
+    return { searchInput, results };
+  }
+};
+</script>
+```
+
+As you can see, it doesn’t seem to be working. This is because our API calling code, specifically results.value = eventApi.getEventCount(searchInput.value); is only getting called once, during the first time setup() is run. It doesn’t know to fire again, when our searchInput gets updated.
