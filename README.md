@@ -315,3 +315,12 @@ destroyed(): Called after the Vue instance has been destroyed.
 activated() Used for <keep-alive>, when a component inside<keep-alive> is toggled on.
 deactivated() Used for <keep-alive>, when a component inside<keep-alive> is toggled off.
 errorCaptured() Called when an error from any descendent component is captured.
+
+#### Vue3 Modifications
+
+beforeDestroy()->beforeUnmount()
+destroyed()->unmounted()
+
+#### When using Composition API
+
+we can create callback hooks inside setup() by adding "on" to the callback name
