@@ -443,6 +443,8 @@ watch(searchInput, () => {
 });
 ```
 
+Only if searchInput is changed will it run again, even if other reactive objects are called
+
 Also, if I need access to the new value and old value of the item being watched I can write:
 
 ```JavaScript
@@ -450,3 +452,65 @@ watch(searchInput, (newVal, oldVal) => {
   ...
 });
 ```
+
+### Watching Multiple Sources
+
+If I want to watch two Reactive References I can send them inside an array:
+
+```JavaScript
+watch([firstName, lastName], () => {
+  ...  
+});
+```
+
+Now if either are changed, the code inside will re-run. I can also get access to both of their old and new values with:
+
+```JavaScript
+watch([firstName, lastName], ([newFirst, newLast], [oldFirst, oldLast]) => {
+  ...   
+});
+```
+
+What if we use watch instead watchEffect in our example?
+
+```JavaScript
+<template>
+  <div>
+    Search for <input v-model="searchInput" /> 
+    <div>
+      <p>Number of events: {{ results }}</p>
+    </div>
+  </div>
+</template>
+<script>
+import { ref, watch } from "@vue/composition-api";
+import eventApi from "@/api/event.js";
+
+export default {
+  setup() {
+    const searchInput = ref("");
+    const results = ref(0);
+    
+    watch(searchInput, () => {
+      results.value = eventApi.getEventCount(searchInput.value);
+    })
+
+    return { searchInput, results };
+  }
+};
+</script>
+```
+
+If we looked at this in the browser, we would notice number of events starts out as empty, and then it works as we type.
+
+It started out as empty,because it didn't get run on initial load. In other words, Watch is lazy loaded by default.
+
+If you want have it run on initial load,
+
+```JavaScript
+watch(searchInput, () => {
+      results.value = eventApi.getEventCount(searchInput.value);
+    }, { immediate:true })
+```
+
+So watch Effect only ever takes a single argument, which is the callback and watch has multiple arguments, including the reactive object we want to watch, and options if we want to configure it.
