@@ -4,6 +4,7 @@ import EventDetails from '../views/EventDetails.vue'
 import About from '../views/About.vue'
 import Capacity from '../views/Capacity.vue'
 import CapacityReactive from '../views/CapacityReactive.vue'
+import LifeCycleHook from '../views/LifeCycleHook.vue'
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     path: '/composition-api-2',
     name: 'CapacityReactive',
     component: CapacityReactive
+  },
+  {
+    path: '/composition-api-3',
+    name: 'LifeCycleHook',
+    component: LifeCycleHook
   }
 ]
 
