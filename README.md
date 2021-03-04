@@ -411,3 +411,22 @@ export default {
 ```
 
 As you can see, it doesn’t seem to be working. This is because our API calling code, specifically results.value = eventApi.getEventCount(searchInput.value); is only getting called once, during the first time setup() is run. It doesn’t know to fire again, when our searchInput gets updated.
+
+#### Solution: **watchEffect**
+
+To fix this we need to use watchEffect. 
+
+This will run our function on the next tick while reactively tracking its dependencies, and re-run it whenever the dependencies have changed. Like so:
+
+```JavaScript
+setup() {
+  const searchInput = ref("");
+  const results = ref(0);
+
+  watchEffect(() => {
+    results.value = eventApi.getEventCount(searchInput.value);
+  });
+
+  return { searchInput, results };
+}
+```
