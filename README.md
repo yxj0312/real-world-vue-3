@@ -631,8 +631,12 @@ export default {
         getEvents.results.value = null;
       }
     });
-    return { searchInput, ...getEvents };
+    return { searchInput, getEvents };
   }
 };
 </script>
 ```
+
+Improving the Code
+
+When I ran this by members of the Vue core team, they called attention to …getEvents. Specifically that I shouldn’t be destructuring the object. Without destructuring the data is namespaced under getEvents which makes it more encapsulated and clear where the data is coming from in the component using it. It might look like:
