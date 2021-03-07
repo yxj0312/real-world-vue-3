@@ -597,3 +597,42 @@ export default function usePromise(fn) { // fn is the actual API call
 Some modifications:
 
 - create a const called createPromise, which will contain an asynchronous anonymous function, which receives any arguments that our API call needs.
+
+Now we can import the usePromise function. Then we'll create a new constant called getEvents = userPromise(search=>...)
+
+in App.js
+
+```JavaScript
+<template>
+  <div>
+    Search for <input v-model="searchInput" /> 
+    <div>
+      <p>Loading: {{ getEvents.loading }}</p>
+      <p>Error: {{ getEvents.error }}</p>
+      <p>Number of events: {{ getEvents.results }}</p>
+    </div>
+  </div>
+</template>
+<script>
+import { ref, watch } from "@vue/composition-api";
+import eventApi from "@/api/event.js";
+import usePromise from "@/composables/use-promise";
+export default {
+  setup() {
+    const searchInput = ref("");
+    const getEvents = usePromise(search =>
+      eventApi.getEventCount(search.value) // Send in the API call that will be wrapped in a promise
+    );
+
+    watch(searchInput, () => {
+      if (searchInput.value !== "") {
+        getEvents.createPromise(searchInput); // Call the promise with updated searchInput data
+      } else {
+        getEvents.results.value = null;
+      }
+    });
+    return { searchInput, ...getEvents };
+  }
+};
+</script>
+```
