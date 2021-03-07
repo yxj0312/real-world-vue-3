@@ -565,3 +565,31 @@ export default {
 };
 </script>
 ```
+
+This is a pretty common pattern in a Vue application where I have an API call and I need to account for the results, loading, and error state. How might I extract this to use the composition API? Well first I might create a new file and extract the common functionality.
+
+#### Now with Shared State
+
+/composables/use-promise.js
+
+```JavaScript
+import { ref } from "@vue/composition-api";
+export default function usePromise(fn) { // fn is the actual API call
+  const results = ref(null);
+  const loading = ref(false);
+  const error = ref(null);
+  const createPromise = async (...args) => { // Args is where we send in searchInput
+    loading.value = true;
+    error.value = null;
+    results.value = null;
+    try {
+      results.value = await fn(...args); // Passing through the SearchInput
+    } catch (err) {
+      error.value = err;
+    } finally {
+      loading.value = false;
+    }
+  };
+  return { results, loading, error, createPromise };
+}
+```
