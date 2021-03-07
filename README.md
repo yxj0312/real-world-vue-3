@@ -578,12 +578,12 @@ export default function usePromise(fn) { // fn is the actual API call
   const results = ref(null);
   const loading = ref(false);
   const error = ref(null);
-  const createPromise = async (...args) => { // Args is where we send in searchInput
+  const createPromise = async (...args) => { // Args is where we send in searchInput(Any arguments that should be sent into fn)
     loading.value = true;
     error.value = null;
     results.value = null;
     try {
-      results.value = await fn(...args); // Passing through the SearchInput
+      results.value = await fn(...args); // Passing through the SearchInput(call the function with the arguments sent in, here = value of the input)
     } catch (err) {
       error.value = err;
     } finally {
@@ -593,3 +593,7 @@ export default function usePromise(fn) { // fn is the actual API call
   return { results, loading, error, createPromise };
 }
 ```
+
+Some modifications:
+
+- create a const called createPromise, which will contain an asynchronous anonymous function, which receives any arguments that our API call needs.
