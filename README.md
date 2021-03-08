@@ -679,3 +679,26 @@ Suspense is a built in component that we can use to wrap two different templates
   </Suspense>
 </template>
 ```
+
+When Suspense loads it will first attempt to render out what it finds in <template #default>. If at any point it finds a component with a setup function that returns a promise, or an Asynchronous Component (which is a new feature of Vue 3) it will instead render the <template #fallback> until all the promises have been resolved.
+
+Let’s take a look at a very basic example:
+
+```JavaScript
+<template>
+  <Suspense>
+    <template #default>
+      <Event />
+    </template>
+    <template #fallback>
+      Loading...
+    </template>
+  </Suspense>
+</template>
+<script>
+import Event from "@/components/Event.vue";
+export default {
+  components: { Event },
+};
+</script>
+```
