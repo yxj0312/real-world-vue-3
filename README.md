@@ -768,3 +768,7 @@ export default {
 ```
 
 Notice the div at the top, and the v-else on the Suspense tag. Also notice the onErrorCaptured callback in the setup method. In case you’re wondering, returning true from onErrorCaptured is to prevent the error from propagating further. This way our user doesn’t get an error in their browser console.
+
+#### Creating Skeleton Loading Screens
+
+Using the Suspense tag makes creating things like Skeleton loading screens super simple. You know, like these:Your skeleton would go into your <template #fallback> and your rendered HTML would go into your <template #default>. Pretty simple!
