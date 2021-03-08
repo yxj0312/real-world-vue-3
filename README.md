@@ -640,3 +640,22 @@ export default {
 Improving the Code
 
 When I ran this by members of the Vue core team, they called attention to …getEvents. Specifically that I shouldn’t be destructuring the object. Without destructuring the data is namespaced under getEvents which makes it more encapsulated and clear where the data is coming from in the component using it. It might look like:
+
+### Suspense
+
+When we code up Vue apps we use API calls a lot to load in back-end data. When we are waiting for this API data to load, it’s a good user interface practice to let the user know that the data is loading. This is especially needed if the user has a slow internet connection.
+
+Typically in Vue we’ve used lots of v-if and v-else statements to show one bit of html while we’re waiting for data to load and then switch it out once data is loaded. Things can get even more complex when we have multiple components doing API calls, and we want to wait until all data is loaded before displaying the page.
+
+```JavaScript
+<template>
+  <div v-if="loading">Loading...</div>
+  <div v-else>
+  ...
+  </div>
+</template>
+```
+
+However, Vue 3 comes with an alternative option inspired by React 16.6 called Suspense. This allows you to wait for any asynchronous work (like making a data API call) to complete before a component is displayed.
+
+Suspense is a built in component that we can use to wrap two different templates, like so:
