@@ -654,6 +654,13 @@ Typically in Vue we’ve used lots of v-if and v-else statements to show one bit
   ...
   </div>
 </template>
+
+// or 
+const store = new Vuex.Store({
+  state: {
+    loadingStatus:
+  }
+})
 ```
 
 However, Vue 3 comes with an alternative option inspired by React 16.6 called Suspense. This allows you to wait for any asynchronous work (like making a data API call) to complete before a component is displayed.
