@@ -729,3 +729,42 @@ Now when I load up the page I see the loading … message, until the API call pr
 #### Multiple Async Calls
 
 What’s nice about Suspense is that I can have multiple asynchronous calls, and Suspense will wait for all of them to be resolved to display anything. So, if I put two Event. Now Suspense is going to wait for both of them to be resolved before showing up.
+
+#### Deeply Nested Async Calls
+
+What’s even more powerful is that I might have a deeply nested component that has an asynchronous call. Suspense will wait for all asynchronous calls to finish before loading the template. So you can have one loading screen on your app, that waits for multiple parts of your application to load.
+
+#### What about errors?
+
+It’s pretty common that you need a fallback if an API call doesn’t work properly, so we need some sort of error screen along with our loading screen. Luckily the Suspense syntax allows you to use it with a good old v-if, and we have a new onErrorCaptured lifecycle hook that we can use to listen for errors:
+
+```JavaScript
+<template>
+  <div v-if="error">Uh oh .. {{ error }}</div>
+  <Suspense v-else>
+    <template #default>
+      <Event />
+    </template>
+    <template #fallback>
+      Loading...
+    </template>
+  </Suspense>
+</template>
+<script>
+import Event from "@/components/Event.vue";
+import { ref, onErrorCaptured } from "vue";
+export default {
+  components: { Event },
+  setup() {
+    const error = ref(null);
+    onErrorCaptured((e) => {
+      error.value = e;
+      return true;
+    });
+    return { error };
+  },
+};
+</script>
+```
+
+Notice the div at the top, and the v-else on the Suspense tag. Also notice the onErrorCaptured callback in the setup method. In case you’re wondering, returning true from onErrorCaptured is to prevent the error from propagating further. This way our user doesn’t get an error in their browser console.
