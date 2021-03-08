@@ -705,6 +705,8 @@ export default {
 
 Here you can see I’m loading my Event component. It looks similar to previous lessons:
 
+/components/Event.js
+
 ```JavaScript
 <template>
 ...
@@ -719,6 +721,11 @@ export default {
 };
 </script>
 ```
+
 Notice in particular that my setup() method marked as async and my await useEventSpace() call. Obviously, there’s an API call inside the useEventSpace() function, that I’m going to wait to return.
 
 Now when I load up the page I see the loading … message, until the API call promise is resolved, and then the resulting template is displayed.
+
+#### Multiple Async Calls
+
+What’s nice about Suspense is that I can have multiple asynchronous calls, and Suspense will wait for all of them to be resolved to display anything. So, if I put two Event. Now Suspense is going to wait for both of them to be resolved before showing up.
