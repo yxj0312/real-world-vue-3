@@ -702,3 +702,23 @@ export default {
 };
 </script>
 ```
+
+Here you can see I’m loading my Event component. It looks similar to previous lessons:
+
+```JavaScript
+<template>
+...
+</template>
+<script>
+import useEventSpace from "@/composables/use-event-space";
+export default {
+  async setup() {
+    const { capacity, attending, spacesLeft, increaseCapacity } = await useEventSpace();
+    return { capacity, attending, spacesLeft, increaseCapacity };
+  },
+};
+</script>
+```
+Notice in particular that my setup() method marked as async and my await useEventSpace() call. Obviously, there’s an API call inside the useEventSpace() function, that I’m going to wait to return.
+
+Now when I load up the page I see the loading … message, until the API call promise is resolved, and then the resulting template is displayed.
