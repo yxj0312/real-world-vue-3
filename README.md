@@ -666,3 +666,16 @@ const store = new Vuex.Store({
 However, Vue 3 comes with an alternative option inspired by React 16.6 called Suspense. This allows you to wait for any asynchronous work (like making a data API call) to complete before a component is displayed.
 
 Suspense is a built in component that we can use to wrap two different templates, like so:
+
+```JavaScript
+<template>
+  <Suspense>
+    <template #default>
+      <!-- Put component/components here, one or more of which makes an asychronous call -->
+    </template>
+    <template #fallback>
+      <!-- What to display when loading -->
+    </template>
+  </Suspense>
+</template>
+```
