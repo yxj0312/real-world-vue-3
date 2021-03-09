@@ -778,4 +778,35 @@ Using the Suspense tag makes creating things like Skeleton loading screens super
 Vue’s component architecture enables us to build our user interface into components that beautifully organize our business logic and presentation layer. However, there are some instances where one component has some html that needs to get rendered in an alternative location. For example:
 
 1. Styles that require fixed or absolute positioning and z-index. For example, it’s a common pattern to place UI components (like modals) right before the </body> tag to ensure they are properly placed in front of all other parts of the webpage.
+
 2. When our Vue application is running on a small part of our webpage (or a widget), sometimes we may want to move components to other locations in the DOM outside of our Vue app.
+
+#### Solution
+
+The solution Vue 3 provides is the Teleport component. Previously this was named “Portal”, but the name was changed to Teleport so not to conflict with the future <portal> element which might some day be a part of the HTML standard. The Teleport component allows us to specify template html (which may include child components) that we can send to another part of the DOM. I’m going to show you some very basic usage, and then show you how we might use this in something more advanced. Let’s start by adding a div tag outside of our Vue app, in our basic Vue CLI generated app:
+
+/public/index.html
+
+```JavaScript
+     ...
+    <div id="app"></div>
+    <div id="end-of-body"></div>
+  </body>
+</html>
+```
+
+Then let’s try teleporting some text to this #end-of-body div from inside our Vue application to slightly outside the application.
+
+```JavaScript
+   <template>
+    <teleport to="#end-of-body">
+      This should be at the end.
+    </teleport>
+    <div>
+      This should be at the top.
+    </div>
+  </template>
+</html>
+```
+
+Notice the teleport line where we specify the div we want to move our template code to, and if we did this right, the text at the top should be moved to the bottom. Sure enough, it does:
