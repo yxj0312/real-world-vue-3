@@ -810,3 +810,29 @@ Then let’s try teleporting some text to this #end-of-body div from inside our 
 ```
 
 Notice the teleport line where we specify the div we want to move our template code to, and if we did this right, the text at the top should be moved to the bottom. Sure enough, it does:
+
+#### Teleport Options for To
+
+Our to attribute simply needs to be a valid DOM query selector. Aside from using the id like I did above, here are three more examples.
+
+Class selector
+
+```JavaScript
+<teleport to=".someClass">
+```
+
+Data selector
+
+```JavaScript
+<teleport to="[data-modal]">
+```
+
+Using a data attribute our target div might look like:
+
+Dynamic selector
+
+If you needed you could even bind a dynamic selector, adding the colon.
+
+```JavaScript
+<teleport :to="reactiveProperty">
+```
