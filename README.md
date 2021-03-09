@@ -772,3 +772,10 @@ Notice the div at the top, and the v-else on the Suspense tag. Also notice the o
 #### Creating Skeleton Loading Screens
 
 Using the Suspense tag makes creating things like Skeleton loading screens super simple. You know, like these:Your skeleton would go into your <template #fallback> and your rendered HTML would go into your <template #default>. Pretty simple!
+
+### Teleport
+
+Vue’s component architecture enables us to build our user interface into components that beautifully organize our business logic and presentation layer. However, there are some instances where one component has some html that needs to get rendered in an alternative location. For example:
+
+1. Styles that require fixed or absolute positioning and z-index. For example, it’s a common pattern to place UI components (like modals) right before the </body> tag to ensure they are properly placed in front of all other parts of the webpage.
+2. When our Vue application is running on a small part of our webpage (or a widget), sometimes we may want to move components to other locations in the DOM outside of our Vue app.
