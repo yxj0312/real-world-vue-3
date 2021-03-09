@@ -867,3 +867,32 @@ export default {
 As you can see, the content inside teleport gets moved from inside the component, to outside the component as we toggle:
 
 If we inspect the source realtime, we can see that the content is actually being moved in the DOM from place to place.
+
+#### Automatically Saving the State
+
+When teleport goes from disabled to enabled, the DOM elements are re-used, so they completely retain the existing state. This can be illustrated by teleporting a playing video.
+
+```JavaScript
+<template>
+  <teleport to="#end-of-body" :disabled="!showText">
+    <video autoplay="true" loop="true" width="250">
+      <source src="flower.webm" type="video/mp4">
+    </video>
+  </teleport>
+  <div>
+    This should be at the top.
+  </div>
+  <button @click="showText = !showText">
+      Toggle showText
+  </button>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      showText: false
+    };
+  }
+};
+</script>
+```
