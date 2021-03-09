@@ -836,3 +836,34 @@ If you needed you could even bind a dynamic selector, adding the colon.
 ```JavaScript
 <teleport :to="reactiveProperty">
 ```
+
+#### Disabled State
+
+Modals and other pop-ups often start hidden until they are displayed on the screen. For that reason, teleport has a disabled state where the content stays inside the original component. It’s not until teleport is enabled that it will be moved to the target positioning. Let’s update the code to be able to toggle showText, like so:
+
+```JavaScript
+<template>
+  <teleport to="#end-of-body" :disabled="!showText">
+    This should be at the end.
+  </teleport>
+  <div>
+    This should be at the top.
+  </div>
+  <button @click="showText = !showText">
+     Toggle showText
+  </button>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      showText: false
+    };
+  }
+};
+</script>
+```
+
+As you can see, the content inside teleport gets moved from inside the component, to outside the component as we toggle:
+
+If we inspect the source realtime, we can see that the content is actually being moved in the DOM from place to place.
