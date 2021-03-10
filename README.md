@@ -896,3 +896,15 @@ export default {
 };
 </script>
 ```
+
+#### Hiding the Text
+
+If the content we had inside teleport was a modal, we probably wouldn’t want to show it until it was active. Right now “This should be at the end.” is displaying inside our component, even when showText is false. We can disable this from showing by simply adding a v-if.
+
+```JavaScript
+<template>
+  <teleport to="#end-of-body" :disabled="!showText" v-if="showText">
+      This should be at the end.
+  </teleport>
+  ...
+```
