@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+// eslint-disable-next-line no-unused-vars
 import { TodoItem } from '../types'
 export default defineComponent({
   data: () => ({
