@@ -5,6 +5,7 @@ import About from '../views/About.vue'
 import Capacity from '../views/Capacity.vue'
 import CapacityReactive from '../views/CapacityReactive.vue'
 import LifeCycleHook from '../views/LifeCycleHook.vue'
+import Todo from '../views/Todo.vue'
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     path: '/composition-api-3',
     name: 'LifeCycleHook',
     component: LifeCycleHook
+  },
+  {
+    path: '/todo',
+    name: 'Todo',
+    component: Todo
   }
 ]
 
