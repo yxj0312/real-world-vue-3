@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
+import { computed, defineComponent, reactive, toRefs } from 'vue'
 // eslint-disable-next-line no-unused-vars
 import { TodoItem } from '../types'
 export default defineComponent({
@@ -13,23 +13,23 @@ export default defineComponent({
       listFilter: 'all'
     })
 
-    return {
-      ...toRefs(state)
-    }
-  },
-  computed: {
-    filteredTasks(): TodoItem[] {
-      if (this.listFilter === 'complete') {
-        return this.taskItems.filter(
+    const filteredTasks = computed(() => {
+      if (state.listFilter === 'complete') {
+        return state.taskItems.filter(
           (item: TodoItem) => item.isComplete === true
         )
-      } else if (this.listFilter === 'incomplete') {
-        return this.taskItems.filter(
+      } else if (state.listFilter === 'incomplete') {
+        return state.taskItems.filter(
           (item: TodoItem) => item.isComplete === false
         )
       } else {
-        return this.taskItems
+        return state.taskItems
       }
+    })
+
+    return {
+      ...toRefs(state),
+      filteredTasks
     }
   },
   methods: {
