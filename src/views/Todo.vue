@@ -1,16 +1,22 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, reactive, toRefs } from 'vue'
 // eslint-disable-next-line no-unused-vars
 import { TodoItem } from '../types'
 export default defineComponent({
-  data: () => ({
-    newTask: {
-      label: '',
-      type: 'personal'
-    } as TodoItem,
-    taskItems: [] as TodoItem[],
-    listFilter: 'all'
-  }),
+  setup() {
+    const state = reactive({
+      newTask: {
+        label: '',
+        type: 'personal'
+      } as TodoItem,
+      taskItems: [] as TodoItem[],
+      listFilter: 'all'
+    })
+
+    return {
+      ...toRefs(state)
+    }
+  },
   computed: {
     filteredTasks(): TodoItem[] {
       if (this.listFilter === 'complete') {
