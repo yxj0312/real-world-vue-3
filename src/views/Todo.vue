@@ -27,17 +27,17 @@ export default defineComponent({
       }
     })
 
-    return {
-      ...toRefs(state),
-      filteredTasks
-    }
-  },
-  methods: {
-    addTask() {
-      this.taskItems.push({
-        ...this.newTask,
+    const addTask = () => {
+      state.taskItems.push({
+        ...state.newTask,
         isComplete: false
       })
+    }
+
+    return {
+      ...toRefs(state),
+      addTask,
+      filteredTasks
     }
   }
 })
