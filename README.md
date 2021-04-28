@@ -49,7 +49,7 @@ The Problem with our code
 
 Solution: Modularizing using a Service
 
-## Vue 3 Composition API
+## [Vue 3 Composition API](https://www.vuemastery.com/courses/vue-3-essentials/setup-and-reactive-references)
 
 The composition API Syntax is Additive. It's a second way to write components
 
